@@ -11,6 +11,7 @@ import qualified Prelude as P
 -- | The `Optional` data type contains 0 or 1 value.
 --
 -- It might be thought of as a list, with a maximum length of one.
+-- Like a nullable type
 data Optional a =
   Full a
   | Empty
@@ -27,8 +28,9 @@ mapOptional ::
   (a -> b)
   -> Optional a
   -> Optional b
-mapOptional =
-  error "todo: Course.Optional#mapOptional"
+mapOptional _ Empty =
+  Empty
+mapOptional f (Full a) = Full (f a)
 
 -- | Bind the given function on the possible value.
 --

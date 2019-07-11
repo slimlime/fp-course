@@ -54,8 +54,8 @@ instance Applicative ExactlyOne where
     -> ExactlyOne a
     -> ExactlyOne b
     
-  (<*>) =
-    ExactlyOne a <$> ExactlyOne b -> _
+  (<*>) = error "todo: Course.Applicative (<*>)#instance ExactlyOne"
+    -- ExactlyOne a <$> ExactlyOne b -> _
     
   -- ExactlyOne f <*> ExactlyOne a = ExactlyOne (f a)
     -- error "todo: Course.Applicative (<*>)#instance ExactlyOne"
@@ -101,15 +101,25 @@ instance Applicative List where
   pure ::
     a
     -> List a
-  pure =
-    error "todo: Course.Applicative pure#instance List"
+  pure = 
+    \a -> a :. Nil
+    -- error "todo: Course.Applicative pure#instance List"
   (<*>) ::
     List (a -> b)
     -> List a
     -> List b
-  (<*>) =
-    error "todo: Course.Apply (<*>)#instance List"
+  -- (<*>) =
+  --   error "todo: Course.Apply (<*>)#instance List"
+  (<*>) Nil _ = Nil 
+  (<*>) (f:.fs) as = (map f as) ++ (fs <*> as) 
+  -- fmap. a then list of bs. recurse.
 
+  -- correctness of your code is not reliant on your sobriety :D
+
+    -- WHAT IS A LIST
+    -- :info 
+    -- 0 or 1 things
+    -- (<*>) Nil _ = 
 -- | Insert into an Optional.
 --
 -- prop> \x -> pure x == Full x
@@ -127,7 +137,7 @@ instance Applicative Optional where
     a
     -> Optional a
   pure =
-    Full a
+    Full
   (<*>) ::
     Optional (a -> b)
     -> Optional a

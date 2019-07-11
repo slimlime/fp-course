@@ -10,3 +10,24 @@ Parser
         * instance Applicative X
         * instance Functor X
         * by authoring a mechanical implementation (there is no thinking here, only data entry)
+
+
+* 
+anything that maps
+Functor anything (f) that maps :: (a -> b) -> f a -> f b
+satifies laws of id and composition
+arrowT is a functor.. optional... 
+
+
+Applicative
+* satisfies 4 laws
+identity
+pure id <*>apply on x always get x
+2 composition
+3 homomorphism
+4 interchange
+
+need to follow laws otherwise get bugs
+
+George going to international talk.
+

@@ -173,6 +173,11 @@ instance Functor Parser where
     \f -> \p -> P (\input -> _)
 -- ParseResult is itself a Functor. call a Functor to do it for me. spacesuitburrito
     --  error "todo: Course.Parser (<$>)#instance Parser"
+-- take this input and give it to that \p parser i will have a parseresult a
+-- how do i take parseresult a and turn it into parseresult b
+-- use a function
+-- i have a function called \f that will do that
+
 
 -- | Return a parser that always succeeds with the given value and consumes no input.
 --

@@ -150,7 +150,18 @@ instance Functor ((->) t) where
   a
   -> f b
   -> f a
-(<$) = (<$>) . const
+(<$) = 
+  -- _ -- need a function
+  -- \thisIsAnA -> _ -- need a function
+  -- \thisA -> \thisIsf_b -> _ -- ned a func
+  -- \a -> \f_b -> _ <$> f_b -- ? need a functino from b to a
+  -- \a -> \f_b -> (\b -> _) <$> f_b -- now need an a
+  \a -> \f_b -> (\b -> a) <$> f_b -- now have an a
+  
+  -- found hole
+  -- fmap if can turn x into y can turn f(x) into f(y)
+
+  -- (<$>) . const
 
 -- f of anything - can call fmap
 

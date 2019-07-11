@@ -33,12 +33,12 @@ mapOptional ::
 mapOptional _ _ = Empty
 mapOptional _ Empty =
   Empty
-mapOptional f (Full a) = Full (f a)
+-- mapOptional f (Full a) = Full (f a)
 -- 2 
 mapOptional fn (Full a) = 
   Full (fn a)
 
-mapOptional f (Full v) = Full (f v)
+-- mapOptional f (Full v) = Full (f v)
 -- | Bind the given function on the possible value.
 --
 -- >>> bindOptional Full Empty
@@ -57,7 +57,30 @@ bindOptional ::
 -- 1 if no as return no bs
 bingOptional _ Empty = Empty
 -- if a. put it in there. Follow type tools.
-bindOptional f (Full x) = f x
+bindOptional f (Full x) =
+  f x
+-- tyoecheck solutions
+
+
+-- eg
+--if x null return null else use(x).  bindOptional use
+
+  -- 10:15 am notes and playback 
+data Three a = Three a a a
+mapList :: (a-> b) -> List a -> List b
+mapList _ Nil = Nil
+mapList f (h:.t) = f h :. mapList f t
+
+mapOptional :: (a -> b) -> Optinoal a -> Optional b
+mapOptional _ Empty = Empty
+mapOptional f (Full v) = Full (f v)
+
+mapThree :: (a -> b) -> Three a -> Three b
+mapThree f (Three a1 a2 a3) = Three (f a1) (f a2) (f a3)
+
+flopList :: List (a -> b) -> a -> List b
+flopList list a = mapList (\k -> k a) list
+
 
 -- | Return the possible value if it exists; otherwise, the second argument.
 --
@@ -70,8 +93,9 @@ bindOptional f (Full x) = f x
   Optional a
   -> a
   -> a
-(??) =
-  error "todo: Course.Optional#(??)"
+(??) a = a
+-- Empty ?? a = a
+
 
 -- | Try the first optional for a value. If it has a value, use it; otherwise,
 -- use the second value.

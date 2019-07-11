@@ -203,7 +203,7 @@ instance Applicative ((->) t) where
     -- \t2a2b -> _ -- 
     -- \t2a2b -> \t2a -> _ -- 
     -- \t2a2b -> \t2a -> _ -- 
-    \t2a2b -> \t2a -> \t -> _ --  • Found hole: _ :: b Where: ‘b’ is a rigid type variable bound by
+    \t2a2b -> \t2a -> \t -> t2a2b t (t2a t) --  • Found hole: _ :: b Where: ‘b’ is a rigid type variable bound by
     -- error "todo: Course.Apply (<*>)#instance ((->) t)"
 
 -- (t -> a -> b) -> (t -> a) -> t -> b

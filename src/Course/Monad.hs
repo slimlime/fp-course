@@ -49,7 +49,7 @@ instance Monad List where
     -> List a
     -> List b
   (=<<) =
-    error "todo: Course.Monad (=<<)#instance List"
+    flatMap
 
 -- | Binds a function on an Optional.
 --

@@ -142,6 +142,7 @@ character = P (\input -> _)
   -- do i call?  P
 -- if empty then EOF error. check type of input. either Nil or cons
 -- if nil - unexpectedEOF. if cons then it is char with rest of the input.
+-- expect a parseresult of characters.
 
 
 

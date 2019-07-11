@@ -187,6 +187,13 @@ flop ((*2) : . (+1) :. (*3) :. Nil)
 
 -- "AllThingsThatMap" is known as "Functor"
 
+-- fmap id x == x
+-- fmap f ((fmap) g x) == (fmap) (f . g) x
+
+
+-- (<$>) id x == x
+-- (<$>) f (((<$>)) g x) == ((<$>)) (f . g) x
+
 -- | Return the possible value if it exists; otherwise, the second argument.
 --
 -- >>> Full 8 ?? 99

@@ -111,7 +111,8 @@ instance Applicative List where
   -- (<*>) =
   --   error "todo: Course.Apply (<*>)#instance List"
   (<*>) Nil _ = Nil 
-  (<*>) (f:.fs) as = (map f as) ++ (fs <*> as) 
+  (<*>) (f:.fs) as = (map f as) ++ (fs <*> as)
+  (<*>) fs as = foldRight (\f z -> _) Nil fs 
   -- fmap. a then list of bs. recurse.
 
   -- correctness of your code is not reliant on your sobriety :D

@@ -39,7 +39,7 @@ all monads are applicative and all applicatives are functors
 
 e.g. eq and ordering tightening of constraints.
 Monad* any applicative (f) functor that also binds:
-* (=<<) :
+* (=<<) :: (a -> f b) -> f a -> f b
 * satisfies law of associativity
 
 
@@ -65,3 +65,4 @@ instance functor optional
 data optional deriving eq show
 
 ? can deriving functor?
+

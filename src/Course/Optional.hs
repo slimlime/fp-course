@@ -28,10 +28,17 @@ mapOptional ::
   (a -> b)
   -> Optional a
   -> Optional b
+
+-- 1
+mapOptional _ _ = Empty
 mapOptional _ Empty =
   Empty
 mapOptional f (Full a) = Full (f a)
+-- 2 
+mapOptional fn (Full a) = 
+  Full (fn a)
 
+mapOptional f (Full v) = Full (f v)
 -- | Bind the given function on the possible value.
 --
 -- >>> bindOptional Full Empty
@@ -46,8 +53,11 @@ bindOptional ::
   (a -> Optional b)
   -> Optional a
   -> Optional b
-bindOptional =
-  error "todo: Course.Optional#bindOptional"
+
+-- 1 if no as return no bs
+bingOptional _ Empty = Empty
+-- if a. put it in there. Follow type tools.
+bindOptional f (Full x) = f x
 
 -- | Return the possible value if it exists; otherwise, the second argument.
 --

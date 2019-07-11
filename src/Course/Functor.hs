@@ -197,7 +197,11 @@ void ::
   f a
   -> f ()
 void =
-  error "todo: Course.Functor#void"
+  _
+-- what does fmap do :D
+-- turn a into unit ()
+-- () unit
+-- Found hole: _ :: f a -> f ()
 
 -----------------------
 -- SUPPORT LIBRARIES --

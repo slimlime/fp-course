@@ -233,8 +233,8 @@ lift2 ::
   -> f a
   -> f b
   -> f c
-lift2 =
-  error "todo: Course.Applicative#lift2"
+lift2 = _ -- Found hole: _ :: (a -> b -> c) -> f a -> f b -> f c
+  -- error "todo: Course.Applicative#lift2"
 
 -- | Apply a ternary function in the environment.
 -- /can be written using `lift2` and `(<*>)`./

@@ -53,16 +53,50 @@ instance Applicative ExactlyOne where
     ExactlyOne (a -> b)
     -> ExactlyOne a
     -> ExactlyOne b
+    
   (<*>) =
     ExactlyOne a <$> ExactlyOne b -> _
+    
+  -- ExactlyOne f <*> ExactlyOne a = ExactlyOne (f a)
     -- error "todo: Course.Applicative (<*>)#instance ExactlyOne"
+-- ???
 
+
+
+-- -- function application
+-- -- effects
+
+
+-- class Functor f => Applicative f where
+--   pure ::
+--     a -> f a
+--   (<*>) ::
+--     f (a -> b)
+--     -> f a
+--     -> f b
+
+-- infixl 4 <*>
+
+
+
+-- --
+-- --
+-- data Config = Config Int String; getPort (Config p _) = p
+-- getPort
+-- :type \f a -> f a
+
+
+
+-- can solve using append. foldRight
 -- | Insert into a List.
 --
 -- prop> \x -> pure x == x :. Nil
 --
 -- >>> (+1) :. (*2) :. Nil <*> 1 :. 2 :. 3 :. Nil
 -- [2,3,4,2,4,6]
+-- for every integer in list 2
+
+-- for every function in this list 3
 instance Applicative List where
   pure ::
     a
@@ -93,7 +127,7 @@ instance Applicative Optional where
     a
     -> Optional a
   pure =
-    error "todo: Course.Applicative pure#instance Optional"
+    Full a
   (<*>) ::
     Optional (a -> b)
     -> Optional a

@@ -130,7 +130,8 @@ crazy :: (a -> b) -> Int a -> Int b -- wtf?
 -- List Integer :: *
 
 -- :kind (->) :: * -> * -> *
---
+-- KIND SYSTEM
+
 
 -- >>  :kind forall a. (->) a Int
 --     forall a. (->) a Int :: *

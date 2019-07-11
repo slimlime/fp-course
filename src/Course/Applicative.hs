@@ -238,6 +238,7 @@ lift2 ::
 lift2 = \f fa fb -> f <$> fa <*> fb
 
 -- e.g. Java
+-- var r = List.empty
 -- for (int i = 0; i< list1.length; i++){
 --   for(int j = 0; j < list2.length; j++) {
 --     r += list1[i] list2[j];

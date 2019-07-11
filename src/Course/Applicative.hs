@@ -252,6 +252,7 @@ else if (y == null)
 else
   return x + y
 
+-- e.g. lift2 (+) (Full 7) (Full 8)
 
 
 -- lift2 x = f (<*>) x -> _

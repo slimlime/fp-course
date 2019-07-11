@@ -185,6 +185,7 @@ flop ((*2) : . (+1) :. (*3) :. Nil)
 
 (<$>) fmap
 
+-- "AllThingsThatMap" is known as "Functor"
 
 -- | Return the possible value if it exists; otherwise, the second argument.
 --

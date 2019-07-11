@@ -237,6 +237,14 @@ lift2 ::
 -- \f fa fb -> f <$> fa -- compiler did you know not an f of c
 lift2 = \f fa fb -> f <$> fa <*> fb
 
+-- e.g. Java
+-- for (int i = 0; i< list1.length; i++){
+--   for(int j = 0; j < list2.length; j++) {
+--     r += list1[i] list2[j];
+--   }
+-- }
+
+
 -- lift2 x = f (<*>) x -> _
 -- fmap (a-> b -> c) 
 -- f fmap x to get (f of b to c)

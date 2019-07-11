@@ -137,8 +137,9 @@ constantParser =
 -- True
 character ::
   Parser Char
-character =
-  error "todo: Course.Parser#character"
+character = P _
+  -- error "todo: Course.Parser#character" -- I need to make a parser so what
+  -- do i call?  P
 
 -- | Parsers can map.
 -- Write a Functor instance for a @Parser@.

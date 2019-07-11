@@ -98,6 +98,43 @@ flopThree funcs_3 a = mapThree (\k -> k a) funcs3
 -- software engineering question
 -- problem?
 -- Repetitive
+-- wrote three times
+-- called in different context
+
+
+-- want to write once, allowing them to provide how they want to map
+-- abstraction generic.
+
+-- there is only one implementation that has this type
+-- copy into google. haskell lazy
+-- glue the two functinos together.
+-- the dot
+-- . function composition is a type of map.
+mapTArrow :: (a -> b) -> (t -> a) -> (t -> b)
+mapTArrow = (.)
+flopTArrow :: (t -> (a -> b)) -> a -> (t ->b)
+flopTArrow ta_funcs a = (.) (\k -> k a) ta_funcs
+
+crazy :: (a -> b) -> Int a -> Int b -- wtf?
+-- what is a List
+-- constructor
+-- values type system
+-- kind system. Integer kind type
+-- List is type 
+-- :kind List
+-- List :: * -> *
+-- Integer :: *
+-- :kind List Integer
+-- arrow is infix position ? ->
+-- can use prefix positino lol ->
+-- List Integer :: *
+
+-- :kind (->) :: * -> * -> *
+--
+
+-- >>  :kind forall a. (->) a Int
+--     forall a. (->) a Int :: *
+--
 
 -- | Return the possible value if it exists; otherwise, the second argument.
 --

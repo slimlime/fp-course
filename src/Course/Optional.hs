@@ -180,6 +180,12 @@ data List a = Nil | a :. List a
 infixr 5 :. 
 
 
+
+flop ((*2) : . (+1) :. (*3) :. Nil)
+
+(<$>) fmap
+
+
 -- | Return the possible value if it exists; otherwise, the second argument.
 --
 -- >>> Full 8 ?? 99

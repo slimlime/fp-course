@@ -149,7 +149,7 @@ abstract class AllThingsThatMap<F> {
 
 -- vs
 class AllThingsThatMap f where
-  mapTheThings :: (a -> b) -> f a -> f b
+  (<$>) :: (a -> b) -> f a -> f b
 
 instance AllThingsThatMap List where
   mapTheThings _ Nil = Nil

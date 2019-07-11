@@ -31,12 +31,12 @@ mapOptional ::
 
 -- 1
 mapOptional _ _ = Empty
-mapOptional _ Empty =
-  Empty
+-- mapOptional _ Empty =
+--   Empty
 -- mapOptional f (Full a) = Full (f a)
 -- 2 
-mapOptional fn (Full a) = 
-  Full (fn a)
+-- mapOptional fn (Full a) = 
+--   Full (fn a)
 
 -- mapOptional f (Full v) = Full (f v)
 -- | Bind the given function on the possible value.

@@ -139,6 +139,34 @@ crazy :: (a -> b) -> Int a -> Int b -- wtf?
 --     forall a. (->) a Int :: *
 --
 
+data NestedList a = NestedList (List (List a))
+-- :kind NestedList :: * -> *
+
+-- eg Java
+abstract class AllThingsThatMap<F> {
+  <A, B> F<B> mapTheThing(Func<A, B>, F<A>);
+}
+
+-- vs
+class AllThingsThatMap f where
+  mapTheThings :: (a -> b) -> f a -> f b
+
+instance AllThingsThatMap List where
+  mapTheThings _ Nil = Nil
+  mapTheThings f (h:.t) = f h :. mapTheThings f t
+-- ^ can now map on Lists
+
+flop :: f (a -> b) -> a -> f b
+flop effs a = mapTheThings (\k -> k a) effs
+-- ^ this can now map on all things that map
+-- need constrant on f
+-- as long as f has defined how to do map. instance.
+-- v
+flop :: AllThingsThatMap f => (a -> b) -> a -> f b
+flop effs a = mapTheThings (\k -> k a) effs
+
+
+
 -- | Return the possible value if it exists; otherwise, the second argument.
 --
 -- >>> Full 8 ?? 99

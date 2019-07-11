@@ -112,7 +112,12 @@ instance Applicative List where
   --   error "todo: Course.Apply (<*>)#instance List"
   (<*>) Nil _ = Nil 
   (<*>) (f:.fs) as = (map f as) ++ (fs <*> as)
-  (<*>) fs as = foldRight (\f z -> _) Nil fs 
+  (<*>) fs as = foldRight (\f z -> map f as ++ z) Nil fs 
+
+  -- f1 :. f2 :. f3 :. Nil
+  -- cons. zens
+  
+  -- z tail recurse
   -- fmap. a then list of bs. recurse.
 
   -- correctness of your code is not reliant on your sobriety :D
@@ -138,13 +143,20 @@ instance Applicative Optional where
     a
     -> Optional a
   pure =
-    Full
+    Full -- \x -> Full x
   (<*>) ::
     Optional (a -> b)
     -> Optional a
     -> Optional b
-  (<*>) =
-    error "todo: Course.Apply (<*>)#instance Optional"
+  -- (<*>) = _
+  (<*>) Empty _ = -- no a  = no b
+    Empty
+  (<*>) _ Empty =  -- no b = no b
+    Empty
+  (<*>) (Full f) (Full a) = Full (f a)
+  -- f <*> a =
+  --   bindOptional (`mapOptional` a) f
+    -- error "todo: Course.Apply (<*>)#instance Optional"
 
 -- | Insert into a constant function.
 --
@@ -168,7 +180,7 @@ instance Applicative ((->) t) where
   pure ::
     a
     -> ((->) t a)
-  pure =
+  pure = 
     error "todo: Course.Applicative pure#((->) t)"
   (<*>) ::
     ((->) t (a -> b))

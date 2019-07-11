@@ -4,6 +4,7 @@
 
 module Course.Functor where
 
+ import qualified Data.Map as Map
 import Course.Core
 import Course.ExactlyOne
 import Course.Optional
@@ -17,6 +18,10 @@ import qualified Prelude as P(fmap)
 --   `∀x. (id <$> x) ≅ x`
 --
 -- * The law of composition
+-- upside down A char
+-- for all
+-- for all f g and f x,
+
 --   `∀f g x.(f . g <$> x) ≅ (f <$> (g <$> x))`
 class Functor f where
   -- Pronounced, eff-map.
@@ -41,8 +46,13 @@ instance Functor ExactlyOne where
     (a -> b)
     -> ExactlyOne a
     -> ExactlyOne b
-  (<$>) =
-    error "todo: Course.Functor (<$>)#instance ExactlyOne"
+  
+  f <$> ExactlyOne a =
+    ExactlyOne (f a)
+ 
+-- -- cheat code `map` or pattern match
+-- f <$> ExactlyOne a =
+--   ExactlyOne (f a)
 
 -- | Maps a function on the List functor.
 --
@@ -72,7 +82,18 @@ instance Functor Optional where
     -> Optional a
     -> Optional b
   (<$>) =
-    error "todo: Course.Functor (<$>)#instance Optional"
+    mapOptional
+
+-- paper based aids and move around.
+-- rewrite signature to make easier to read
+-- change from prefix to infix operator.
+-- instance Functor ((->) t) where
+--   (<$>) ::
+--     (a -> b)
+--     -> (t -> a)
+--     -> (t -> b)
+--   (<$>) =
+--     error "todo: Course.Functor (<$>)#((->) t)"
 
 -- | Maps a function on the reader ((->) t) functor.
 --

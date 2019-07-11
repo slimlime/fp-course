@@ -55,158 +55,158 @@ bindOptional ::
   -> Optional b
 
 -- 1 if no as return no bs
-bingOptional _ Empty = Empty
+bindOptional _ Empty = Empty
 -- if a. put it in there. Follow type tools.
 bindOptional f (Full x) =
   f x
--- tyoecheck solutions
+-- typecheck solutions
 
 
--- eg
---if x null return null else use(x).  bindOptional use
+-- -- eg
+-- --if x null return null else use(x).  bindOptional use
 
-  -- 10:15 am notes and playback 
-data Three a = Three a a a
-mapList :: (a-> b) -> List a -> List b
-mapList _ Nil = Nil
-mapList f (h:.t) = f h :. mapList f t
+--   -- 10:15 am notes and playback 
+-- data Three a = Three a a a
+-- mapList :: (a-> b) -> List a -> List b
+-- mapList _ Nil = Nil
+-- mapList f (h:.t) = f h :. mapList f t
 
-mapOptional :: (a -> b) -> Optinoal a -> Optional b
-mapOptional _ Empty = Empty
-mapOptional f (Full v) = Full (f v)
+-- mapOptional :: (a -> b) -> Optinoal a -> Optional b
+-- mapOptional _ Empty = Empty
+-- mapOptional f (Full v) = Full (f v)
 
-mapThree :: (a -> b) -> Three a -> Three b
-mapThree f (Three a1 a2 a3) = Three (f a1) (f a2) (f a3)
+-- mapThree :: (a -> b) -> Three a -> Three b
+-- mapThree f (Three a1 a2 a3) = Three (f a1) (f a2) (f a3)
 
-flopList :: List (a -> b) -> a -> List b
-
-
-                  -- list of functions     v
-          -- and mapped across it   v
-    -- to get access to fn
-    -- turn each of those functions to a b
-flopList list a = mapList (\k -> k a) list
--- flopList list_of_functions a = mapList (\k -> k a) list_of_functions
-
--- optional. zero or one functions
-flopOptional :: Optional (a -> b) -> a -> Optional b
-flopOptional o_of_functions a = mapOptional (\k -> k a) o_of_functions
-
-flopThree :: Three (a -> b) -> a -> Three b
-flopThree funcs_3 a = mapThree (\k -> k a) funcs3
-
--- software engineering question
--- problem?
--- Repetitive
--- wrote three times
--- called in different context
+-- flopList :: List (a -> b) -> a -> List b
 
 
--- want to write once, allowing them to provide how they want to map
--- abstraction generic.
+--                   -- list of functions     v
+--           -- and mapped across it   v
+--     -- to get access to fn
+--     -- turn each of those functions to a b
+-- flopList list a = mapList (\k -> k a) list
+-- -- flopList list_of_functions a = mapList (\k -> k a) list_of_functions
 
--- there is only one implementation that has this type
--- copy into google. haskell lazy
--- glue the two functinos together.
--- the dot
--- . function composition is a type of map.
-mapTArrow :: (a -> b) -> (t -> a) -> (t -> b)
-mapTArrow = (.)
-flopTArrow :: (t -> (a -> b)) -> a -> (t ->b)
-flopTArrow ta_funcs a = (.) (\k -> k a) ta_funcs
+-- -- optional. zero or one functions
+-- flopOptional :: Optional (a -> b) -> a -> Optional b
+-- flopOptional o_of_functions a = mapOptional (\k -> k a) o_of_functions
 
-crazy :: (a -> b) -> Int a -> Int b -- wtf?
--- what is a List
--- constructor
--- values type system
--- kind system. Integer kind type
--- List is type 
--- :kind List
--- List :: * -> *
--- Integer :: *
--- :kind List Integer
--- arrow is infix position ? ->
--- can use prefix positino lol ->
--- List Integer :: *
+-- flopThree :: Three (a -> b) -> a -> Three b
+-- flopThree funcs_3 a = mapThree (\k -> k a) funcs3
 
--- :kind (->) :: * -> * -> *
--- KIND SYSTEM
--- >> :kind forall t. (->) t
--- forall t. (->) t :: * ->
+-- -- software engineering question
+-- -- problem?
+-- -- Repetitive
+-- -- wrote three times
+-- -- called in different context
 
 
--- >>  :kind forall a. (->) a Int
---     forall a. (->) a Int :: *
---
+-- -- want to write once, allowing them to provide how they want to map
+-- -- abstraction generic.
 
-data NestedList a = NestedList (List (List a))
--- :kind NestedList :: * -> *
+-- -- there is only one implementation that has this type
+-- -- copy into google. haskell lazy
+-- -- glue the two functinos together.
+-- -- the dot
+-- -- . function composition is a type of map.
+-- mapTArrow :: (a -> b) -> (t -> a) -> (t -> b)
+-- mapTArrow = (.)
+-- flopTArrow :: (t -> (a -> b)) -> a -> (t ->b)
+-- flopTArrow ta_funcs a = (.) (\k -> k a) ta_funcs
 
--- eg Java
-abstract class AllThingsThatMap<F> {
-  <A, B> F<B> mapTheThing(Func<A, B>, F<A>);
-}
+-- crazy :: (a -> b) -> Int a -> Int b -- wtf?
+-- -- what is a List
+-- -- constructor
+-- -- values type system
+-- -- kind system. Integer kind type
+-- -- List is type 
+-- -- :kind List
+-- -- List :: * -> *
+-- -- Integer :: *
+-- -- :kind List Integer
+-- -- arrow is infix position ? ->
+-- -- can use prefix positino lol ->
+-- -- List Integer :: *
 
--- vs
-class AllThingsThatMap f where
-  (<$>) :: (a -> b) -> f a -> f b
+-- -- :kind (->) :: * -> * -> *
+-- -- KIND SYSTEM
+-- -- >> :kind forall t. (->) t
+-- -- forall t. (->) t :: * ->
 
-instance AllThingsThatMap List where
-  mapTheThings _ Nil = Nil
-  mapTheThings f (h:.t) = f h :. mapTheThings f t
--- ^ can now map on Lists
 
-flop :: f (a -> b) -> a -> f b
-flop effs a = mapTheThings (\k -> k a) effs
--- ^ this can now map on all things that map
--- need constrant on f
--- as long as f has defined how to do map. instance.
--- v
-flop :: AllThingsThatMap f => (a -> b) -> a -> f b
-flop effs a = mapTheThings (\k -> k a) effs
+-- -- >>  :kind forall a. (->) a Int
+-- --     forall a. (->) a Int :: *
+-- --
 
--- implementatino
-data Three a = Three a a a
-  deriving (Eq, Show)
+-- data NestedList a = NestedList (List (List a))
+-- -- :kind NestedList :: * -> *
 
-  instance AllThingsThatMap Three where
+-- -- eg Java
+-- abstract class AllThingsThatMap<F> {
+--   <A, B> F<B> mapTheThing(Func<A, B>, F<A>);
+-- }
+
+-- -- vs
+-- class AllThingsThatMap f where
+--   (<$>) :: (a -> b) -> f a -> f b
+
+-- instance AllThingsThatMap List where
+--   mapTheThings _ Nil = Nil
+--   mapTheThings f (h:.t) = f h :. mapTheThings f t
+-- -- ^ can now map on Lists
+
+-- flop :: f (a -> b) -> a -> f b
+-- flop effs a = mapTheThings (\k -> k a) effs
+-- -- ^ this can now map on all things that map
+-- -- need constrant on f
+-- -- as long as f has defined how to do map. instance.
+-- -- v
+-- flop :: AllThingsThatMap f => (a -> b) -> a -> f b
+-- flop effs a = mapTheThings (\k -> k a) effs
+
+-- -- implementatino
+-- data Three a = Three a a a
+--   deriving (Eq, Show)
+
+--   instance AllThingsThatMap Three where
     
-:t flop :: AllThingsThatMap f => (a -> b) -> a -> f b
+-- :t flop :: AllThingsThatMap f => (a -> b) -> a -> f b
 
-flop ((*2) : . (+1) :. (*3) :. (const 7) :. Nil)
+-- flop ((*2) : . (+1) :. (*3) :. (const 7) :. Nil)
 
-data List a = Nil | a :. List a
-  deriving (Eq, Show)
-infixr 5 :. 
-
-
-
-flop ((*2) : . (+1) :. (*3) :. Nil)
-
-(<$>) fmap
-
--- "AllThingsThatMap" is known as "Functor"
-
--- fmap id x == x
--- fmap f ((fmap) g x) == (fmap) (f . g) x
+-- data List a = Nil | a :. List a
+--   deriving (Eq, Show)
+-- infixr 5 :. 
 
 
--- (<$>) id x == x
--- (<$>) f (((<$>)) g x) == ((<$>)) (f . g) x
 
--- | Return the possible value if it exists; otherwise, the second argument.
---
--- >>> Full 8 ?? 99
--- 8
---
--- >>> Empty ?? 99
--- 99
-(??) ::
-  Optional a
-  -> a
-  -> a
-(??) a = a
--- Empty ?? a = a
+-- flop ((*2) : . (+1) :. (*3) :. Nil)
+
+-- (<$>) fmap
+
+-- -- "AllThingsThatMap" is known as "Functor"
+
+-- -- fmap id x == x
+-- -- fmap f ((fmap) g x) == (fmap) (f . g) x
+
+
+-- -- (<$>) id x == x
+-- -- (<$>) f (((<$>)) g x) == ((<$>)) (f . g) x
+
+-- -- | Return the possible value if it exists; otherwise, the second argument.
+-- --
+-- -- >>> Full 8 ?? 99
+-- -- 8
+-- --
+-- -- >>> Empty ?? 99
+-- -- 99
+-- (??) ::
+--   Optional a
+--   -> a
+--   -> a
+-- (??) a = a
+-- -- Empty ?? a = a
 
 
 -- | Try the first optional for a value. If it has a value, use it; otherwise,

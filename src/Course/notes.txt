@@ -20,6 +20,9 @@ arrowT is a functor.. optional...
 
 
 Applicative
+* any Functor (f) that also:
+    * pure :: a -> f a
+    * (<*>) :: f (a -> b) -> f a -> f b
 * satisfies 4 laws
 identity
 pure id <*>apply on x always get x
@@ -31,3 +34,34 @@ need to follow laws otherwise get bugs
 
 George going to international talk.
 
+rewrote to demonstrate
+all monads are applicative and all applicatives are functors
+
+e.g. eq and ordering tightening of constraints.
+Monad* any applicative (f) functor that also binds:
+* (=<<) :
+* satisfies law of associativity
+
+
+* 
+Purpose
+* Monad - software engineering principle.
+* we use these things and more so as to solve a problem once and for all. 
+Opposed to solving the same problem repeatedly. These abstractions emerge by following fundamental
+software engineering principles
+
+*
+unpurpose
+burrito tutorial disease
+Monad not spacesuits or burrito dont write random tutorial
+Monad (or Functor or Applicative) not related to I/O
+Monad is not for side effects
+
+
+
+instance functor list
+
+instance functor optional
+data optional deriving eq show
+
+? can deriving functor?

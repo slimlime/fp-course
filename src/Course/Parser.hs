@@ -168,9 +168,10 @@ instance Functor Parser where
     -> Parser b
   (<$>) = 
     -- \f -> _ 
-    \f -> \p -> _  -- :r i need a parser b. use capital P
-    \f -> \p -> P _
-
+    -- \f -> \p -> _  -- :r i need a parser b. use capital P
+    -- \f -> \p -> P _
+    \f -> \p -> P (\input -> _)
+-- ParseResult is itself a Functor. call a Functor to do it for me. spacesuitburrito
     --  error "todo: Course.Parser (<$>)#instance Parser"
 
 -- | Return a parser that always succeeds with the given value and consumes no input.

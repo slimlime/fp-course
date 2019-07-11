@@ -233,7 +233,21 @@ lift2 ::
   -> f a
   -> f b
   -> f c
-lift2 = _ -- Found hole: _ :: (a -> b -> c) -> f a -> f b -> f c
+lift2 = \aa -> \bb -> \cc -> _ -> (\aa cc) 
+lift2 = (<*>) 
+-- fmap (a-> b -> c) 
+-- f fmap x to get (f of b to c)
+-- map to get (f b c) and apply to get f c
+-- 
+-- pure  :: a -> f a -- pure!
+-- lift1 :: (a -> b) -> f a -> f b -- fmap! (<*>) 
+-- lift2 :: (a -> b -> c) -> f a -> f b -> f c
+-- lift3 :: (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+-- lift4 :: (a -> b -> c -> d -> e) -> f a -> f b -> f c -> f d -> f e
+-- liftN using lift[N-1] and apply 
+-- liftN can be written using lift[N-1] & (<*>) 
+-- lift2 use one fmap (<*>)  and one apply.
+-- Found hole: _ :: (a -> b -> c) -> f a -> f b -> f c
   -- error "todo: Course.Applicative#lift2"
 
 -- | Apply a ternary function in the environment.

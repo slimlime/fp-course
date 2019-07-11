@@ -379,7 +379,10 @@ lift1 ::
   -> f a
   -> f b
 lift1 =
-  error "todo: Course.Applicative#lift1"
+  \a2b fa -> pure a2b <*> fa
+  -- use pure and apply to get fmap.
+
+  -- error "todo: Course.Applicative#lift1"
 
 -- | Apply, discarding the value of the first argument.
 -- Pronounced, right apply.

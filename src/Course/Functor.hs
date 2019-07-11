@@ -161,7 +161,7 @@ instance Functor ((->) t) where
   -- found hole
   -- fmap if can turn x into y can turn f(x) into f(y)
 
-  -- (<$>) . const
+-- (<$) = (<$>) . const
 
 -- f of anything - can call fmap
 
@@ -196,8 +196,14 @@ void ::
   Functor f =>
   f a
   -> f ()
-void =
-  _
+void = 
+  -- _ 
+  -- \aaa -> _ -- need to get f ()
+  -- can turn a into a unit. can turn f into unit
+  -- \aaa -> _ 
+  -- \aaa -> _ <$> aaa
+  -- 
+  \aaa -> (\a -> ()) <$> aaa -- done o.0
 -- what does fmap do :D
 -- turn a into unit ()
 -- () unit

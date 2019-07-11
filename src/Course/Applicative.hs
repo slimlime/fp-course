@@ -407,9 +407,10 @@ lift1 =
   f a
   -> f b
   -> f b
-(*>) =
+(*>) = const id
+  -- flip const
   -- lift2 const
-  error "todo: Course.Applicative#(*>)"
+  -- error "todo: Course.Applicative#(*>)"
 
 -- | Apply, discarding the value of the second argument.
 -- Pronounced, left apply.

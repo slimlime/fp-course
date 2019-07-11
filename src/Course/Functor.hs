@@ -150,7 +150,22 @@ instance Functor ((->) t) where
   a
   -> f b
   -> f a
-(<$) =   (<$>) . const
+(<$) = (<$>) . const
+
+-- f of anything - can call fmap
+
+-- fmap on f
+-- const :: a -> b -> a
+-- (<$>) . const
+-- turn b into a
+-- ignore b . return a.
+-- map across a list and don't return a function e.g.
+  -- fmap across this f b
+  -- need to give it a function 
+  -- ignore the b
+  -- return the a
+  -- can call fmap on the f. the f that fmap. instance Functor where fmap
+
   -- error "todo: Course.Functor#(<$)"
 
 -- | Anonymous map producing unit value.

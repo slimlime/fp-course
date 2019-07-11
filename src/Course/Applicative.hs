@@ -308,7 +308,12 @@ lift3 ::
   -> f c
   -> f d
 lift3 =
-  \f fa fb fc -> f <$> fa <*> fb <*> fc
+  -- \f fa fb fc -> f <$> fa <*> fb <*> fc
+  \f fa fb fc -> lift2 f fa fb <*> fc
+  -- source code to lift 2 
+  -- just call lift 2 
+  -- f <$> fa <*> fb
+  -- lift2 f fa fb
   -- error "todo: Course.Applicative#lift3"
 
 -- | Apply a quaternary function in the environment.
@@ -398,6 +403,7 @@ lift1 =
   -> f b
   -> f b
 (*>) =
+  -- lift2 const
   error "todo: Course.Applicative#(*>)"
 
 -- | Apply, discarding the value of the second argument.

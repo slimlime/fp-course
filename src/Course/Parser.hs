@@ -138,11 +138,17 @@ constantParser =
 character ::
   Parser Char
 character = P (\input -> _)
-  -- error "todo: Course.Parser#character" -- I need to make a parser so what
+
+-- P (\s -> case s of Nil -> UnexpectedEof
+--   (c:.r) -> Result r c)
+  -- error "todo: Course.Parser#character" 
+  -- I need to make a parser so what
   -- do i call?  P
 -- if empty then EOF error. check type of input. either Nil or cons
 -- if nil - unexpectedEOF. if cons then it is char with rest of the input.
 -- expect a parseresult of characters.
+-- :info ParseResult
+-- 5 possible way to make a ParseResult char. 4 fails 1 succeeding constructor.
 
 
 

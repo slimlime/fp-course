@@ -183,10 +183,20 @@ instance Applicative ((->) t) where
   pure ::
     a
     -> ((->) t a)
+  -- pure = 
+  --   const
+  -- a to t to a
+  -- a -> t -> a
+  -- a -> ((->) t a)
+  -- a -> (t -> a )
+  -- a -> t -> a
+  -- a -> t -> a is const.
+  -- a toooo a 
   pure = 
-    error "todo: Course.Applicative pure#((->) t)"
+    \a _ -> a -- lambda func that takes something but returns a :P
+  
   (<*>) ::
-    ((->) t (a -> b))
+    ((->) t (a -> b)) -- can change to infix. right parentheses are redundant
     -> ((->) t a)
     -> ((->) t b)
   (<*>) =

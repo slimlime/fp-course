@@ -209,6 +209,10 @@ void =
 -- () unit
 -- Found hole: _ :: f a -> f ()
 
+
+flop :: Functor f => f (a -> b) -> a -> f b
+flop asf a = (\k -> k a) <$> asf
+
 -----------------------
 -- SUPPORT LIBRARIES --
 -----------------------

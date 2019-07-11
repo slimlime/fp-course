@@ -54,7 +54,8 @@ instance Applicative ExactlyOne where
     -> ExactlyOne a
     -> ExactlyOne b
   (<*>) =
-    error "todo: Course.Applicative (<*>)#instance ExactlyOne"
+    ExactlyOne a <$> ExactlyOne b -> _
+    -- error "todo: Course.Applicative (<*>)#instance ExactlyOne"
 
 -- | Insert into a List.
 --

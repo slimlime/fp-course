@@ -137,9 +137,13 @@ constantParser =
 -- True
 character ::
   Parser Char
-character = P _
+character = P (\input -> _)
   -- error "todo: Course.Parser#character" -- I need to make a parser so what
   -- do i call?  P
+-- if empty then EOF error. check type of input. either Nil or cons
+-- if nil - unexpectedEOF. if cons then it is char with rest of the input.
+
+
 
 -- | Parsers can map.
 -- Write a Functor instance for a @Parser@.

@@ -246,14 +246,19 @@ lift2 = \f fa fb -> f <$> fa <*> fb
 -- }
 
 -- lift2+
-if (x ==null)
-  return null
-else if (y == null)
-  return null
-else
-  return x + y
+-- if (x ==null)
+--   return null
+-- else if (y == null)
+--   return null
+-- else
+--   return x + y
 
 -- e.g. lift2 (+) (Full 7) (Full 8)
+
+-- lift2 (+) (*2) (+3) 99 -- injected twice
+-- e.g.
+-- func(n) { return f(n) + g(n); } -- List2 + 
+-- start seeing these patterns of repeating. Dependency injection
 
 
 -- lift2 x = f (<*>) x -> _

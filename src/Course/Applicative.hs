@@ -244,6 +244,15 @@ lift2 = \f fa fb -> f <$> fa <*> fb
 --   }
 -- }
 
+-- lift2+
+if (x ==null)
+  return null
+else if (y == null)
+  return null
+else
+  return x + y
+
+
 
 -- lift2 x = f (<*>) x -> _
 -- fmap (a-> b -> c) 

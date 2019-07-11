@@ -19,7 +19,9 @@ import Data.Char
 -- >>> :set -XOverloadedStrings
 -- >>> import Data.Char(isUpper)
 
-type Input = Chars
+type Input = Chars -- no order of execution
+-- do whatever ?
+
 
 data ParseResult a =
     UnexpectedEof

@@ -233,8 +233,11 @@ lift2 ::
   -> f a
   -> f b
   -> f c
-lift2 = \aa -> \bb -> \cc -> _ -> (\aa cc) 
-lift2 = (<*>) 
+-- lift2 = \aa -> \bb -> \cc -> _
+-- \f fa fb -> f <$> fa -- compiler did you know not an f of c
+lift2 = \f fa fb -> f <$> fa <*> fb
+
+-- lift2 x = f (<*>) x -> _
 -- fmap (a-> b -> c) 
 -- f fmap x to get (f of b to c)
 -- map to get (f b c) and apply to get f c

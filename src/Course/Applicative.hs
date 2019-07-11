@@ -114,6 +114,7 @@ instance Applicative List where
   (<*>) (f:.fs) as = (map f as) ++ (fs <*> as)
   (<*>) fs as = foldRight (\f z -> map f as ++ z) Nil fs 
 
+   
   -- f1 :. f2 :. f3 :. Nil
   -- cons. zens
   
@@ -154,6 +155,8 @@ instance Applicative Optional where
   (<*>) _ Empty =  -- no b = no b
     Empty
   (<*>) (Full f) (Full a) = Full (f a)
+ -- make discrete units read top down  (<*>) ( Full f) (Full a) = Full (f a)
+  (<*>) _ _ = Empty
   -- f <*> a =
   --   bindOptional (`mapOptional` a) f
     -- error "todo: Course.Apply (<*>)#instance Optional"

@@ -137,10 +137,14 @@ constantParser =
 -- True
 character ::
   Parser Char
-character = P (\input -> _)
-
+character = P (\input -> 
+  case input of 
+    Nil -> UnexpectedEof
+    ch:.rest -> Result rest ch)
+-- Result takes in this order: the rest of the input (rest) and then the thing producing c ch char.
 -- P (\s -> case s of Nil -> UnexpectedEof
 --   (c:.r) -> Result r c)
+
   -- error "todo: Course.Parser#character" 
   -- I need to make a parser so what
   -- do i call?  P

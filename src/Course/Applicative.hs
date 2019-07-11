@@ -343,7 +343,8 @@ lift4 ::
   -> f d
   -> f e
 lift4 =
-  error "todo: Course.Applicative#lift4"
+  \f fa fb fc fd -> f <$> fa <*> fb <*> fc <*> fd
+  -- error "todo: Course.Applicative#lift4"
 
 -- | Apply a nullary function in the environment.
 lift0 ::

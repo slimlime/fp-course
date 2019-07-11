@@ -1,0 +1,12 @@
+Parser
+    * Follow the Types to answer.
+    * The types are less polymorphic, and so less reliable, but will still generally get you there.
+    * Parser has one constructor, called P. There is *only one* way to make a Parser,
+        by this constructor.
+        * Or a function that calls the constructor for you.
+    * ParseResult is a Functor.
+        * (<$>) :: (a -> b) -> ParseResult a -> ParseResult b
+    * For any X, if you have completed instance Monad X, you have also completed:
+        * instance Applicative X
+        * instance Functor X
+        * by authoring a mechanical implementatino (there is no thinking here, only data entry)

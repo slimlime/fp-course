@@ -9,4 +9,4 @@ Parser
     * For any X, if you have completed instance Monad X, you have also completed:
         * instance Applicative X
         * instance Functor X
-        * by authoring a mechanical implementatino (there is no thinking here, only data entry)
+        * by authoring a mechanical implementation (there is no thinking here, only data entry)

@@ -131,6 +131,8 @@ crazy :: (a -> b) -> Int a -> Int b -- wtf?
 
 -- :kind (->) :: * -> * -> *
 -- KIND SYSTEM
+-- >> :kind forall t. (->) t
+-- forall t. (->) t :: * ->
 
 
 -- >>  :kind forall a. (->) a Int

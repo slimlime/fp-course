@@ -165,6 +165,19 @@ flop effs a = mapTheThings (\k -> k a) effs
 flop :: AllThingsThatMap f => (a -> b) -> a -> f b
 flop effs a = mapTheThings (\k -> k a) effs
 
+-- implementatino
+data Three a = Three a a a
+  deriving (Eq, Show)
+
+  instance AllThingsThatMap Three where
+    
+:t flop :: AllThingsThatMap f => (a -> b) -> a -> f b
+
+flop ((*2) : . (+1) :. (*3) :. (const 7) :. Nil)
+
+data List a = Nil | a :. List a
+  deriving (Eq, Show)
+infixr 5 :. 
 
 
 -- | Return the possible value if it exists; otherwise, the second argument.

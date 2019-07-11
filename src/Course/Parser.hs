@@ -43,6 +43,8 @@ instance Show a => Show (ParseResult a) where
   show (Result i a) =
     stringconcat ["Result >", hlist i, "< ", show a]
 
+
+    -- parseresult fmaps.. a to b. parseresult a to parseresult b.
 instance Functor ParseResult where
   _ <$> UnexpectedEof =
     UnexpectedEof

@@ -350,7 +350,8 @@ lift0 ::
   a
   -> f a
 lift0 =
-  error "todo: Course.Applicative#lift0"
+  pure
+  -- error "todo: Course.Applicative#lift0"
 
 -- | Apply a unary function in the environment.
 -- /can be written using `lift0` and `(<*>)`./

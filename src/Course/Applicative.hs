@@ -308,7 +308,8 @@ lift3 ::
   -> f c
   -> f d
 lift3 =
-  error "todo: Course.Applicative#lift3"
+  \f fa fb fc -> f <$> fa <*> fb <*> fc
+  -- error "todo: Course.Applicative#lift3"
 
 -- | Apply a quaternary function in the environment.
 -- /can be written using `lift3` and `(<*>)`./

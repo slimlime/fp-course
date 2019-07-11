@@ -79,8 +79,25 @@ mapThree :: (a -> b) -> Three a -> Three b
 mapThree f (Three a1 a2 a3) = Three (f a1) (f a2) (f a3)
 
 flopList :: List (a -> b) -> a -> List b
-flopList list a = mapList (\k -> k a) list
 
+
+                  -- list of functions     v
+          -- and mapped across it   v
+    -- to get access to fn
+    -- turn each of those functions to a b
+flopList list a = mapList (\k -> k a) list
+-- flopList list_of_functions a = mapList (\k -> k a) list_of_functions
+
+-- optional. zero or one functions
+flopOptional :: Optional (a -> b) -> a -> Optional b
+flopOptional o_of_functions a = mapOptional (\k -> k a) o_of_functions
+
+flopThree :: Three (a -> b) -> a -> Three b
+flopThree funcs_3 a = mapThree (\k -> k a) funcs3
+
+-- software engineering question
+-- problem?
+-- Repetitive
 
 -- | Return the possible value if it exists; otherwise, the second argument.
 --

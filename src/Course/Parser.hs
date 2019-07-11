@@ -22,13 +22,13 @@ import Data.Char
 type Input = Chars -- no order of execution
 -- do whatever ?
 
-
+-- down to 
 data ParseResult a =
     UnexpectedEof
   | ExpectedEof Input
   | UnexpectedChar Char
   | UnexpectedString Chars
-  | Result Input a
+  | Result Input a   -- input no error
   deriving Eq
 
 instance Show a => Show (ParseResult a) where
@@ -57,6 +57,10 @@ instance Functor ParseResult where
   f <$> Result i a =
     Result i (f a)
 
+
+
+
+-- Convenience functions
 -- Function to determine is a parse result is an error.
 isErrorResult ::
   ParseResult a
@@ -88,7 +92,17 @@ onResult (UnexpectedString s)  _ =
 onResult (Result i a) k =
   k i a
 
+  -- -- #IMPORTANT KEY LINE of code here
+  -- - -- - - - - - - 
+-- - -- - - - - - - P is the constructor. one P to get parser
+-- data type          - P constructor Parser ( takes one argument. type)
+-- might make that function arg as lambdainput \input
+
 data Parser a = P (Input -> ParseResult a)
+-- - -- - - - - - - 
+-- - -- - - - - - - 
+-- - -- - - - - - - 
+
 
 parse ::
   Parser a

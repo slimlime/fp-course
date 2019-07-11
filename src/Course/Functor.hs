@@ -4,7 +4,6 @@
 
 module Course.Functor where
 
- import qualified Data.Map as Map
 import Course.Core
 import Course.ExactlyOne
 import Course.Optional
@@ -104,9 +103,40 @@ instance Functor ((->) t) where
     (a -> b)
     -> ((->) t a)
     -> ((->) t b)
-  (<$>) =
-    error "todo: Course.Functor (<$>)#((->) t)"
+  -- (<$>) = \x -> f ()
+  --  error "todo: Course.Functor (<$>)#((->) t)"
+  -- idk what to do
+  -- use underscore for idk :P
+  -- hole
+  -- type lambda \
+  -- type \admaslmkd -> _
+  -- reload
+  -- thingthing then -> underscore
+  -- then needs a  bbbbbeee
+  -- src/Course/Functor.hs:117:35: error:
+  --   • Found hole: _ :: b
+  --     Where: ‘b’ is a rigid type variable bound by
+  --              the type signature for:
+  --                (<$>) :: forall a b. (a -> b) -> (t -> a) -> t -> b
+  --              at src/Course/Functor.hs:(103,5)-(105,17)
+  --   • In the expression: _
+  --     In the expression: \ dshdb -> _
+  --     In the expression: \ fxgn -> \ dshdb -> _
+  --   • Relevant bindings include
+  --       dshdb :: t (bound at src/Course/Functor.hs:117:26)
+  --       fxgn :: t -> a (bound at src/Course/Functor.hs:117:17)
+  --       rxtjrn :: a -> b (bound at src/Course/Functor.hs:117:6)
+  --       (<$>) :: (a -> b) -> (t -> a) -> t -> b
+  --         (bound at src/Course/Functor.hs:116:3)
 
+  -- followed the types to the answer
+  (<$>) =
+    \atob -> \ddd -> \dshdb -> atob (ddd dshdb)
+  -- put it into hoogle...
+  -- f <$> g =
+  --   \x -> f (g x)
+-- use lambda for function
+-- fn  a -> b   -> t a     return b
 -- | Anonymous map. Maps a constant value on a functor.
 --
 -- >>> 7 <$ (1 :. 2 :. 3 :. Nil)
@@ -120,8 +150,8 @@ instance Functor ((->) t) where
   a
   -> f b
   -> f a
-(<$) =
-  error "todo: Course.Functor#(<$)"
+(<$) =   (<$>) . const
+  -- error "todo: Course.Functor#(<$)"
 
 -- | Anonymous map producing unit value.
 --

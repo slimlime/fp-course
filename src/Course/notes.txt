@@ -11,7 +11,7 @@ Parser
         * instance Functor X
         * by authoring a mechanical implementation (there is no thinking here, only data entry)
 
-
+* ? For any X 
 * 
 anything that maps
 Functor anything (f) that maps :: (a -> b) -> f a -> f b

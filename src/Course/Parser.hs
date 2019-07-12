@@ -543,6 +543,14 @@ satisfy ::
   (Char -> Bool)
   -> Parser Char
 satisfy =
+  -- character >>= \c -> _
+  character >>= \c -> valueParser c
+
+  -- preference if then else.
+  -- case of the bool of true false
+  -- bool function
+
+  -- bind. lamblambdaequals sign >>=
   -- satisfy.
   -- parse one character
   -- and make sure it satisfies that predicate.

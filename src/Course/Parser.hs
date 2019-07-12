@@ -487,9 +487,9 @@ character2 :: Parser (Char, Char)
 --               character >>= \c2 ->
 --                 _ (c1, c2)
 
-character2 = character >>= \c1 -> 
+character2 =  character >>= \c1 -> 
               character >>= \c2 ->
-                valueParser (c1, c2)
+              valueParser (c1, c2)
 
 -- done! Type checks.
 -- type in ghci Prelude console. parse character2 "abc"

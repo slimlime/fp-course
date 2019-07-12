@@ -668,8 +668,9 @@ space =
 list ::
   Parser a
   -> Parser (List a)
-list =
-  error "todo: Course.Parser#list"
+list p =
+  list1 p ||| valueParser Nil
+  -- error "todo: Course.Parser#list"
 
 -- | Return a parser that produces at least one value from the given parser then
 -- continues producing a list of values from the given parser (to ultimately produce a non-empty list).
@@ -687,12 +688,18 @@ list =
 list1 ::
   Parser a
   -> Parser (List a)
-list1 p=
-  p >>= \x ->
-    list p
+-- list1 p =
+--   p >>= \x ->
+--     list p
+
+list1 p =
+  p >>= (\x ->
+    list p >>= (\y ->
+      pure (x:.y)))
   -- call "And then" 
   -- bind! - some languages call it AND THEN?
   -- error "todo: Course.Parser#list1"
+  -- mutually recursive
 
 -- | Return a parser that produces one or more space characters
 -- (consuming until the first non-space) but fails if

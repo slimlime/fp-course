@@ -543,7 +543,10 @@ satisfy ::
   (Char -> Bool)
   -> Parser Char
 satisfy =
-  error "todo: Course.Parser#satisfy"
+  -- satisfy.
+  -- parse one character
+  -- and make sure it satisfies that predicate.
+  -- error "todo: Course.Parser#satisfy"
 
 -- | Return a parser that produces the given character but fails if
 --

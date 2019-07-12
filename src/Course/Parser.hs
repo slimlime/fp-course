@@ -243,11 +243,12 @@ src/Course/Parser.hs:193:34: error:
 valueParser ::
   a
   -> Parser a
-valueParser = 
+valueParser f = 
   -- \a -> P -- pure for parser. neutral parser that does nothing -- go lambda a and how to call parser? P
   -- valueParser
-  pure -- ? 
-
+  -- pure -- ? 
+  -- \a -> P f -- asdijaoid
+  P (`Result` f)
   -- parser that does nothing but very useful
   -- it's already implemented down here somewhere pure = that.
   

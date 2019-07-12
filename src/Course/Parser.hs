@@ -544,7 +544,10 @@ satisfy ::
   -> Parser Char
 satisfy =
   -- character >>= \c -> _
-  character >>= \c -> valueParser c
+  -- character >>= \c -> valueParser c
+  -- character >>= \c -> if pr c then _ else _ - succeed with c predicate otherwise i want to fail
+  character >>= \c -> if pr c then _ else _
+
 
   -- preference if then else.
   -- case of the bool of true false

@@ -336,14 +336,17 @@ valueParser =
   -- P _
   -- P _
 (|||) (P p) (P q) = 
-  P (\input -> p input) -- this will compile but not correct
+  -- P (\input -> p input) -- this will compile but not correct
   -- error "todo: Course.Parser#(|||)"
 
   -- did that succeed
-  P (\input -> case p input of 
-                  Result j a -> Result j a  -- did succeed
-                  _ -> q input) -- else try on second parser.
+  -- P (\input -> case p input of 
+  --                 Result j a -> Result j a  -- did succeed
+  --                 _ -> q input) -- else try on second parser.
 
+  P (\input -> case p input of
+      r@(Result _ _) -> r   -- if it did hit the result constructor.
+      _ -> q input)  -- if didn't hit Result constructor.
   -- -->> :t P
   -- P :: (Input -> ParseResult a) -> Parser a
   -- >>

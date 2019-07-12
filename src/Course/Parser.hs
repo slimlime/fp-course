@@ -511,7 +511,11 @@ instance Applicative Parser where
     -> Parser a
     -> Parser b
   (<*>) =
-    error "todo: Course.Parser (<*>)#instance Parser"
+    \f a ->
+      f >>= \ff ->
+        a >>= \aa ->
+          pure (ff aa)
+    -- error "todo: Course.Parser (<*>)#instance Parser"
 
 -- | Return a parser that produces a character but fails if
 --

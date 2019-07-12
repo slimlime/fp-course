@@ -635,6 +635,8 @@ space ::
 space =
   satisfy isSpace
 
+  -- lol Char -> Bools
+  -- cons false
 -- | Return a parser that continues producing a list of values from the given parser.
 --
 -- /Tip:/ Use @list1@, @pure@ and @(|||)@.

@@ -339,6 +339,11 @@ valueParser =
   P (\input -> p input) -- this will compile but not correct
   -- error "todo: Course.Parser#(|||)"
 
+  -- did that succeed
+  P (\input -> case p input of 
+                  Result j a -> Result j a  -- did succeed
+                  _ -> q input) -- else try on second parser.
+
   -- -->> :t P
   -- P :: (Input -> ParseResult a) -> Parser a
   -- >>

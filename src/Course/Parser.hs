@@ -190,7 +190,7 @@ instance Functor Parser where
     -- if don't know. reasoning partial answer. suspect using f
     -- use typeof. "Help me, ghc!"
 
-    \f -> \(P p) -> P (\input -> _ f (p input))  -- help me ghc i suspect use f
+    \f -> \(P p) -> P (\input -> (<$>) f (p input))  -- help me ghc i suspect use f
 -- | Return a parser that always succeeds with the given value and consumes no input.
 --
 {-FMAP HAS THIS TYPE a->b -> f a -> f b (parseresult thing)

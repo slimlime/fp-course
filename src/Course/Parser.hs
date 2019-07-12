@@ -292,6 +292,9 @@ valueParser =
     -- (>>=) character (\c1 -> character >>= \c2 -> (c1, c2))    -- gg
 -- turn a pair of characters into a parser for a pair of chars
 -- how about a parser that does nothing
+-- no arrow in the type signature. just a parser.
+
+
     -- (>>=) character (\c1 -> character >>= \c2 -> valueParser (c1, c2)) 
     -- twoChars :: Parser (Char, Char)
     -- twoChars (>>=) character (\c1 -> character >>= \c2 -> valueParser (c1, c2)) 

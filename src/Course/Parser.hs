@@ -364,7 +364,8 @@ valueParser =
     let r = p input
     in bool r (q input) (isErrorResult r) -- workaround let assign expression
   )-- let r instead of re-evaluating the expression.
-
+-- threading r down the call tree. maybe can use lift
+-- harder each time ? 
 infixl 3 |||
 
 

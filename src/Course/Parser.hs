@@ -570,7 +570,7 @@ satisfy pr =
 
   character >>= 
     lift3 bool unexpectedCharParser pure pr
-  
+  -- check branch https://github.com/data61/fp-course.git 20190710 answers
       -- lift3 type (a - b - c - d) lift3 passes c down three times.
 
     -- only works if

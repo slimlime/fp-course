@@ -469,6 +469,7 @@ instance Monad Parser where
 character2 :: Parser (Char, Char)
 -- character :: Parser Char
 -- (>>=) :: Parser a -> (a -> Parser b) -> Parser b  -- flipped bind
+-- valueParser :: a -> Parser a
 -- character2 = ?
 
 

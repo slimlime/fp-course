@@ -196,7 +196,10 @@ instance Functor Parser where
     -- \f -> \(P p) -> P (\input -> ((f <$>) <$> p ))  -- equivalent but dont do these
       -- equivalent rule 
       -- . is equivalent to \x -> f(g x)
+      -- f.g
       -- . is a fmap
+      -- 
+      -- f <$> g
       -- underlying fmap
       -- 
 
@@ -234,13 +237,19 @@ src/Course/Parser.hs:193:34: error:
 
 -}
 
+
 -- >>> parse (valueParser 3) "abc"
 -- Result >abc< 3
 valueParser ::
   a
   -> Parser a
-valueParser =
-  error "todo: Course.Parser#valueParser"
+valueParser = 
+  \a -> P -- pure for parser. neutral parser that does nothing -- go lambda a and how to call parser? P
+  -- parser that does nothing but very useful
+  -- it's already implemented down here somewhere pure = that.
+  
+  -- error "todo: Course.Parser#valueParser"
+
 
 -- | Return a parser that tries the first parser for a successful value.
 --

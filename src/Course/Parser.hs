@@ -170,13 +170,19 @@ instance Functor Parser where
     -- \f -> _ 
     -- \f -> \p -> _  -- :r i need a parser b. use capital P
     -- \f -> \p -> P _
-    \f -> \p -> P (\input -> _)
+    -- \f -> \p -> P (\input -> _)
+    
 -- ParseResult is itself a Functor. call a Functor to do it for me. spacesuitburrito
     --  error "todo: Course.Parser (<$>)#instance Parser"
 -- take this input and give it to that \p parser i will have a parseresult a
 -- how do i take parseresult a and turn it into parseresult b
 -- use a function
 -- i have a function called \f that will do that
+    \f -> \(P p) -> P (\input -> p) -- pattern match directly here.
+    -- this is now of the type input parseresult a?
+
+    -- but this resrve syntax one constructor footnote not quite true. 
+    -- not q constructor. p q . can't. 
 
 
 -- | Return a parser that always succeeds with the given value and consumes no input.

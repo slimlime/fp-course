@@ -243,7 +243,7 @@ src/Course/Parser.hs:193:34: error:
 valueParser ::
   a
   -> Parser a
-valueParser f = 
+valueParser = 
   -- \a -> P -- pure for parser. neutral parser that does nothing -- go lambda a and how to call parser? P
   -- valueParser
   -- pure -- ? 
@@ -254,9 +254,14 @@ valueParser f =
     -- \a -> P (\input -> _) -- takes two things alright two type holes
     -- \a -> P (\input -> Result _ _)
     -- \a -> P (\input -> Result input _)
-    \a -> P (\input -> Result input a) -- now need an a here. right here earlier
+    
+    -- correct answer worked out through here.
+    -- \a -> P (\input -> Result input a) -- now need an a here. right here earlier
     -- useful sometimes need a parser that does nothing.
 
+    -- use pointfree.io -- to cheat. - gg
+    P . flip Result
+    
 
     -- Why would I need a parser that does nothing.
     -- I trust you?
@@ -266,7 +271,7 @@ valueParser f =
     -- patchcable to have the value without consuming extra input that would be parsing next.
     -- getting input to convert back into the chain of parsers.
     -- also see why the parser is useful when we write the monad
-    
+
 
     -- e.g. day month pairs 
     -- 3 july

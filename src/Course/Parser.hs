@@ -248,7 +248,21 @@ valueParser f =
   -- valueParser
   -- pure -- ? 
   -- \a -> P f -- asdijaoid
-  P (`Result` f)
+  -- P (`Result` f)
+    -- \a -> _
+    -- \a -> P -- need a parseresult a0 :i ParseResult look at contructor
+    -- \a -> P (\input -> _) -- takes two things alright two type holes
+    -- \a -> P (\input -> Result _ _)
+    -- \a -> P (\input -> Result input _)
+    \a -> P (\input -> Result input a) -- now need an a here. right here earlier
+    -- useful sometimes need a parser that does nothing.
+
+    -- Why would I need a parser that does nothing.
+    -- I trust you?
+
+    -- e.g. day month pairs 
+    -- 3 july
+    -- certain range
   -- parser that does nothing but very useful
   -- it's already implemented down here somewhere pure = that.
   

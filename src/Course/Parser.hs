@@ -558,9 +558,13 @@ satisfy pr =
   --     -- if pr c then pure c else unexpectedCharParser c
   --     _ bool unexpectedCharParser pure pr c
   
+  -- character >>= \c -> 
+  --     _ bool unexpectedCharParser pure pr c
   character >>= \c -> 
-      _ bool unexpectedCharParser pure pr c
-      
+      lift3 bool unexpectedCharParser pure pr c
+
+      -- lift3 type (a - b - c - d) lift3 passes c down three times.
+
     -- only works if
   -- try
   -- parse (satisfy (\c -> c == 'x')) "abc"

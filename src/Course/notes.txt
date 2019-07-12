@@ -66,3 +66,12 @@ data optional deriving eq show
 
 ? can deriving functor?
 
+
+
+
+(f a -> f b)
+(a -> b) Functor
+f(a -> b) Applicative
+Monad
+Comonad
+

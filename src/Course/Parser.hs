@@ -560,9 +560,17 @@ satisfy pr =
   
   -- character >>= \c -> 
   --     _ bool unexpectedCharParser pure pr c
-  character >>= \c -> 
-      lift3 bool unexpectedCharParser pure pr c
+  
+  -- character >>= \c -> 
+      -- bool (unexpectedCharParser c) (pure c) (pr c)
+  
+      --fn spaceship muscle memory
+      -- \f \a bind a arrow pure 
+      -- push code it's on another branch now
 
+  character >>= 
+    lift3 bool unexpectedCharParser pure pr
+  
       -- lift3 type (a - b - c - d) lift3 passes c down three times.
 
     -- only works if

@@ -434,25 +434,34 @@ instance Monad Parser where
     -- \f -> \(P p) -> P (\input -> p input) -- five constructors. match every single one of them
     -- \f -> \(P p) -> P (\input -> case p input of 
     --                                 UnexpectedEof -> UnexpectedEof
+    -- -- )
+    -- \f -> \(P p) -> P (\input -> case p input of 
+    --                           UnexpectedEof -> UnexpectedEof
+    --                           UnexpectedChar c -> UnexpectedChar c
+    --                           UnexpectedString s -> UnexpectedString s
+    --                           -- i expected the end of file but has input. if it has
+    --                             -- any of the fail. reconstruct
+    --                           ExpectedEof i -> ExpectedEof i
+    --                           -- last case - succeeded
+    --                           -- have not used f
+    --                           -- only use f on the result case.
+    --                           -- that is what bind is going to do. if succeeded.
+    --                             -- when pass a to f i have a Parser b 
+    --                             -- Parser b how to get ParseResult b.
+    --                             -- if get the function out and give it some input
+    --                             -- will then have a ParseResult b
+    --                             -- handy function at top called parse to get the function out
+    --                           Result input2 a -> Result(parse (f a) input2)
     -- )
+-- 
     \f -> \(P p) -> P (\input -> case p input of 
-                              UnexpectedEof -> UnexpectedEof
-                              UnexpectedChar c -> UnexpectedChar c
-                              UnexpectedString s -> UnexpectedString s
-                              -- i expected the end of file but has input. if it has
-                                -- any of the fail. reconstruct
-                              ExpectedEof i -> ExpectedEof i
-                              -- last case - succeeded
-                              -- have not used f
-                              -- only use f on the result case.
-                              -- that is what bind is going to do. if succeeded.
-                                -- when pass a to f i have a Parser b 
-                                -- Parser b how to get ParseResult b.
-                                -- if get the function out and give it some input
-                                -- will then have a ParseResult b
-                                -- handy function at top called parse to get the function out
-                              Result input2 a -> Result(parse (f a))
+                        UnexpectedEof -> UnexpectedEof
+                        UnexpectedChar c -> UnexpectedChar c
+                        UnexpectedString s -> UnexpectedString s
+                        ExpectedEof j -> ExpectedEof j
+                        Result input2 a -> parse (f a) input2
     )
+      --twicely composition greater = greater fish one. call on parsers.
     -- error "todo: Course.Parser (=<<)#instance Parser"
 
 -- | Write an Applicative functor instance for a @Parser@.

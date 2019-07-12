@@ -244,12 +244,15 @@ valueParser ::
   a
   -> Parser a
 valueParser = 
-  \a -> P -- pure for parser. neutral parser that does nothing -- go lambda a and how to call parser? P
+  -- \a -> P -- pure for parser. neutral parser that does nothing -- go lambda a and how to call parser? P
+  -- valueParser
+  pure -- ? 
+
   -- parser that does nothing but very useful
   -- it's already implemented down here somewhere pure = that.
   
   -- error "todo: Course.Parser#valueParser"
-
+-- haskell evaluation model trap repeated expression parser
 
 -- | Return a parser that tries the first parser for a successful value.
 --

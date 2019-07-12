@@ -606,6 +606,9 @@ is =
   --
   -- error "todo: Course.Parser#is"
 
+
+  -- gg functional parsing better than for loop regex parser blow up change requirement
+
 -- | Return a parser that produces a character between '0' and '9' but fails if
 --
 --   * The input is empty.

@@ -366,6 +366,7 @@ valueParser =
   )-- let r instead of re-evaluating the expression.
 -- threading r down the call tree. maybe can use lift
 -- harder each time ? 
+-- space cost. haskell won't optimise this and shouldn't optimise.
 infixl 3 |||
 
 

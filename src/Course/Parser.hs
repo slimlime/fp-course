@@ -579,6 +579,7 @@ satisfy pr =
   -- parse (satisfy) (\c -> c == 'x')) "xabc"
   -- like bool because functinon
 
+  -- executive uqcs ? 
   -- preference if then else.
   -- case of the bool of true false
   -- bool function
@@ -599,7 +600,11 @@ satisfy pr =
 is ::
   Char -> Parser Char
 is =
-  error "todo: Course.Parser#is"
+  -- \c -> satisfy (\d -> c == d)
+  -- \c -> satisfy (\d -> c == d)
+  satisfy . (==) -- by rules of functino composition and inner reductions
+  --
+  -- error "todo: Course.Parser#is"
 
 -- | Return a parser that produces a character between '0' and '9' but fails if
 --

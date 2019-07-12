@@ -633,7 +633,7 @@ digit =
 space ::
   Parser Char
 space =
-  error "todo: Course.Parser#space"
+  satisfy isSpace
 
 -- | Return a parser that continues producing a list of values from the given parser.
 --

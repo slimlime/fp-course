@@ -550,15 +550,23 @@ satisfy pr =
   -- lol always succeeds. valueParser or pure gg
   -- character >>= \c -> if pr c then pure c else _
   -- character >>= \c -> if pr c then pure c else _
-  character >>= 
-    \c -> if pr c then pure c else unexpectedCharParser c
+  -- character >>= 
+  --   \c -> if pr c then pure c else unexpectedCharParser c
 
+  -- character >>= 
+  --   \c -> 
+  --     -- if pr c then pure c else unexpectedCharParser c
+  --     _ bool unexpectedCharParser pure pr c
+  
+  character >>= \c -> 
+      _ bool unexpectedCharParser pure pr c
+      
     -- only works if
   -- try
   -- parse (satisfy (\c -> c == 'x')) "abc"
   -- parse (satisfy) (\c -> c == 'x')) "xabc"
+  -- like bool because functinon
 
-  
   -- preference if then else.
   -- case of the bool of true false
   -- bool function

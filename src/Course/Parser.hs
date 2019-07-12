@@ -338,25 +338,37 @@ valueParser =
 (|||) (P p) (P q) = 
   -- P (\input -> p input) -- this will compile but not correct
   -- error "todo: Course.Parser#(|||)"
+  -- -->> :t P
+  -- P :: (Input -> ParseResult a) -> Parser a
+  -- >>
+-- -- choice parser
+
 
   -- did that succeed
   -- P (\input -> case p input of 
   --                 Result j a -> Result j a  -- did succeed
   --                 _ -> q input) -- else try on second parser.
 
-  P (\input -> case p input of
-      r@(Result _ _) -> r   -- if it did hit the result constructor.
-      _ -> q input  -- if didn't hit Result constructor.
-  )
-  -- -->> :t P
-  -- P :: (Input -> ParseResult a) -> Parser a
-  -- >>
--- -- choice parser
+  -- -- DONESKIS
+  -- P (\input -> case p input of
+  --     r@(Result _ _) -> r   -- if it did hit the result constructor.
+  --     _ -> q input  -- if didn't hit Result constructor.
+  -- )
+
+-- see what isErrorResult
+-- bool is if then else with args other way???
+  -- P (\input -> bool _ _ (isErrorResult (p input))) -- ? not working. call p input again RIP. workaround
+  -- P (\input -> bool (p input) (q input) (isErrorResult (p input))) -- did that hit error constructor otherwise put into other parser q input) oops it will reevaluate run quadratic
+  -- P (\input -> bool (p input) (q input) (isErrorResult (p input))) -- workaround let assign expression
+  P (\input -> 
+    let r = p input
+    in bool r (q input) (isErrorResult r) -- workaround let assign expression
+  )-- let r instead of re-evaluating the expression.
+
 infixl 3 |||
 
 
 
--- see what isErrorResult
 
 -- | Parsers can bind.
 -- Return a parser that puts its input into the given parser and

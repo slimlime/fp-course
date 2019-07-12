@@ -490,8 +490,9 @@ character2 :: Parser (Char, Char)
 character2 = character >>= \c1 -> 
               character >>= \c2 ->
                 valueParser (c1, c2)
--- done! Type checks.
 
+-- done! Type checks.
+-- type in ghci Prelude console. parse character2 "abc"
 -- need something to take (Char, Char) -> Parser (Char, Char) 
 -- patterns!
 

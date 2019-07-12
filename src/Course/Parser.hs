@@ -354,6 +354,10 @@ valueParser =
 -- -- choice parser
 infixl 3 |||
 
+
+
+-- see what isErrorResult
+
 -- | Parsers can bind.
 -- Return a parser that puts its input into the given parser and
 --

@@ -515,6 +515,7 @@ instance Applicative Parser where
       f >>= \ff ->
         a >>= \aa ->
           pure (ff aa)
+    -- lol data entry.
     -- error "todo: Course.Parser (<*>)#instance Parser"
 
 -- | Return a parser that produces a character but fails if

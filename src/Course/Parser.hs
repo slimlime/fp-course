@@ -184,7 +184,8 @@ instance Functor Parser where
     -- but this resrve syntax one constructor footnote not quite true. 
     -- not q constructor. p q . can't. 
 
-    \f -> \(P p) -> P (\input -> p input)
+    -- \f -> \(P p) -> P (\input -> p input)
+    \f -> \(P p) -> P (\input -> _ (p input)) -- found hole ghc says need a functino of ParseResult a -> ParseResult b
 
 -- | Return a parser that always succeeds with the given value and consumes no input.
 --

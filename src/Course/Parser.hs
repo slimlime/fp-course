@@ -289,6 +289,14 @@ valueParser =
     -- (>>=) character _   -- thing that has to go here. \c return Parser
     -- (>>=) character (\c1 -> )    -- gg
     -- (>>=) character (\c1 -> character >>= \c2 -> _)    -- gg
+    -- (>>=) character (\c1 -> character >>= \c2 -> (c1, c2))    -- gg
+-- turn a pair of characters into a parser for a pair of chars
+-- how about a parser that does nothing
+    -- (>>=) character (\c1 -> character >>= \c2 -> valueParser (c1, c2)) 
+    -- twoChars :: Parser (Char, Char)
+    -- twoChars (>>=) character (\c1 -> character >>= \c2 -> valueParser (c1, c2)) 
+    -- works but we need to implement bind
+
 
     -- character :: Parser Char       -- a just turned into Char
 

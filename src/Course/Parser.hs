@@ -191,6 +191,15 @@ instance Functor Parser where
     -- use typeof. "Help me, ghc!"
 
     \f -> \(P p) -> P (\input -> (<$>) f (p input))  -- help me ghc i suspect use f
+    -- \f -> \(P p) -> P (\input -> (<$>) f . p ))  -- equivalent syntax 
+    -- \f -> \(P p) -> P (\input -> ((<$>) f <$> p ))  -- equivalent
+    -- \f -> \(P p) -> P (\input -> ((f <$>) <$> p ))  -- equivalent but dont do these
+      -- equivalent rule 
+      -- . is equivalent to \x -> f(g x)
+      -- . is a fmap
+      -- underlying fmap
+      -- 
+
 -- | Return a parser that always succeeds with the given value and consumes no input.
 --
 {-FMAP HAS THIS TYPE a->b -> f a -> f b (parseresult thing)

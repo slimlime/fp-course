@@ -429,7 +429,18 @@ instance Monad Parser where
     -- p :: Input -> ParseResult a
     -- input :: Input
     -- ?goalpost :: ParseResult b
-    \f -> \(P p) -> P (\input -> ) 
+    -- \f -> \(P p) -> P (\input -> ) 
+    -- \f -> \(P p) -> P (\input -> p input)  - not there yet
+    -- \f -> \(P p) -> P (\input -> p input) -- five constructors. match every single one of them
+    -- \f -> \(P p) -> P (\input -> case p input of 
+    --                                 UnexpectedEof -> UnexpectedEof
+    -- )
+    \f -> \(P p) -> P (\input -> case p input of 
+                              UnexpectedEof -> UnexpectedEof
+                              UnexpectedChar c -> UnexpectedChar c
+                              ExpectedEof i -> ExpectedEof i
+                              UnexpectedString s -> UnexpectedString s
+    )
     -- error "todo: Course.Parser (=<<)#instance Parser"
 
 -- | Write an Applicative functor instance for a @Parser@.

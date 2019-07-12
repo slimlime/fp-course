@@ -464,6 +464,14 @@ instance Monad Parser where
       --twicely composition greater = greater fish one. call on parsers.
     -- error "todo: Course.Parser (=<<)#instance Parser"
 
+
+-- new exercise
+character2 :: Parser (Char, Char)
+-- character :: Parser Char
+-- (>>=) :: Parser a -> (a -> Parser b) -> Parser b  -- flipped bind
+-- character2 = ?
+
+
 -- | Write an Applicative functor instance for a @Parser@.
 -- /Tip:/ Use @(=<<)@.
 instance Applicative Parser where

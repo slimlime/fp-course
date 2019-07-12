@@ -419,7 +419,18 @@ instance Monad Parser where
     -> Parser a
     -> Parser b
   (=<<) =
-    error "todo: Course.Parser (=<<)#instance Parser"
+    -- \f -> _
+    -- \f -> \(P p) -> _ -- pattern match work at once -- Parser b. how to make a Parser P :P 
+    -- \f -> \(P p) -> P _ -- could also use f -- Follow the Types! to the answer
+   -- a function of the type Input - > ParseResult b
+    -- \f -> \(P p) -> P (\input -> _) -- now need to get a ParseResult b
+    -- f is of type
+    -- f :: (a -> Parser b)
+    -- p :: Input -> ParseResult a
+    -- input :: Input
+    -- ?goalpost :: ParseResult b
+    \f -> \(P p) -> P (\input -> ) 
+    -- error "todo: Course.Parser (=<<)#instance Parser"
 
 -- | Write an Applicative functor instance for a @Parser@.
 -- /Tip:/ Use @(=<<)@.

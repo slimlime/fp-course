@@ -476,7 +476,19 @@ character2 :: Parser (Char, Char)
 -- Char -> Parser charpair -> parser PairOfChar
 -- Char -> Parser (Char, Char)
 
-character2 = character >>= \c1 -> -- need to make a Parser pair of char here
+-- character2 = character >>= \c1 -> -- need to make a Parser pair of char here
+-- character2 = character >>= \c1 -> 
+--               character >>= _
+-- character2 = character >>= \c1 -> 
+--               character >>= \c2 ->
+--                 (c1, c2) -- made a pair of char!. but this won't type check
+--                 -- not a Parser (c1, c2)
+character2 = character >>= \c1 -> 
+              character >>= \c2 ->
+                (c1, c2)
+-- need something to take (Char, Char) -> Parser (Char, Char) 
+-- patterns!
+
 
 -- | Write an Applicative functor instance for a @Parser@.
 -- /Tip:/ Use @(=<<)@.

@@ -518,6 +518,9 @@ instance Applicative Parser where
     -- lol data entry.
     -- function onResult on type to do the bind pattern checking.
     -- bind. frmo this moment on I am using this one
+    -- This is the relationship between applicative and Monad
+    -- can do the same thing in Functor btw
+    -- ex Do Functor then Applicative Monad data entry
     -- error "todo: Course.Parser (<*>)#instance Parser"
 
 -- | Return a parser that produces a character but fails if

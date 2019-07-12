@@ -483,9 +483,15 @@ character2 :: Parser (Char, Char)
 --               character >>= \c2 ->
 --                 (c1, c2) -- made a pair of char!. but this won't type check
 --                 -- not a Parser (c1, c2)
+-- character2 = character >>= \c1 -> 
+--               character >>= \c2 ->
+--                 _ (c1, c2)
+
 character2 = character >>= \c1 -> 
               character >>= \c2 ->
-                (c1, c2)
+                valueParser (c1, c2)
+-- done! Type checks.
+
 -- need something to take (Char, Char) -> Parser (Char, Char) 
 -- patterns!
 

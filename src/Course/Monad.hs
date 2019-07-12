@@ -147,9 +147,10 @@ join =
   f a
   -> (a -> f b)
   -> f b
-(>>=) =
-  error "todo: Course.Monad#(>>=)"
+a >>= f =
+  join (f <$> a)
 
+-- patched in 
 infixl 1 >>=
 
 -- | Implement composition within the @Monad@ environment.

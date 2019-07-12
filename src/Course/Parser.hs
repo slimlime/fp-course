@@ -516,6 +516,8 @@ instance Applicative Parser where
         a >>= \aa ->
           pure (ff aa)
     -- lol data entry.
+    -- function onResult on type to do the bind pattern checking.
+    -- bind. frmo this moment on I am using this one
     -- error "todo: Course.Parser (<*>)#instance Parser"
 
 -- | Return a parser that produces a character but fails if

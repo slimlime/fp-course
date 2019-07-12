@@ -702,6 +702,8 @@ list1 p =
   -- bind! - some languages call it AND THEN?
   -- error "todo: Course.Parser#list1"
   -- mutually recursive!! crazy only works in lazy lang haskell. py blow up
+  -- ghci prelude parse (list character) "abc"
+  -- output Result >< "abc"
 
 -- | Return a parser that produces one or more space characters
 -- (consuming until the first non-space) but fails if

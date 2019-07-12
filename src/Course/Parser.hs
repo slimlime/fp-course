@@ -687,8 +687,12 @@ list =
 list1 ::
   Parser a
   -> Parser (List a)
-list1 =
-  error "todo: Course.Parser#list1"
+list1 p=
+  p >>= \x ->
+    list p
+  -- call "And then" 
+  -- bind! - some languages call it AND THEN?
+  -- error "todo: Course.Parser#list1"
 
 -- | Return a parser that produces one or more space characters
 -- (consuming until the first non-space) but fails if

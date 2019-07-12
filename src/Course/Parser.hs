@@ -364,18 +364,18 @@ valueParser =
     let r = p input
     in bool r (q input) (isErrorResult r) -- workaround let assign expression
   ) -- let r instead of re-evaluating the expression.
--- threading r down the call tree. maybe can use lift
--- harder each time ? 
--- space cost. haskell won't optimise this and shouldn't optimise.
-P (\input -> 
-  let r = p input
-  in bool r (const (q input) r) (isErrorResult r) -- workaround let assign expression
-) -- const takes an a of b and returns an a
+-- -- threading r down the call tree. maybe can use lift
+-- -- harder each time ? 
+-- -- space cost. haskell won't optimise this and shouldn't optimise.
+--   P (\input -> 
+--     let r = p input
+--     in bool r (const (q input) r) (isErrorResult r) -- workaround let assign expression
+--   ) -- const takes an a of b and returns an a
 
-P (\input -> 
-  let r = p input
-  in lift3 bool (id) (const . q input) (isErrorResult) r 
-)
+--   P (\input -> 
+--     let r = p input
+--     in lift3 bool (id) (const . q input) (isErrorResult) r 
+--   )
 
 -- point free
 -- P (ap (flip (lift3 bool id . (const .) . q) isErrorResult) p)

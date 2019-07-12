@@ -619,7 +619,8 @@ is =
 digit ::
   Parser Char
 digit =
-  error "todo: Course.Parser#digit"
+  satisfy isDigit
+  -- error "todo: Course.Parser#digit"
 -- use satisfy and isDigit to write this parser
 --
 -- | Return a parser that produces a space character but fails if

@@ -471,8 +471,12 @@ character2 :: Parser (Char, Char)
 -- (>>=) :: Parser a -> (a -> Parser b) -> Parser b  -- flipped bind
 -- valueParser :: a -> Parser a
 -- character2 = ?
-character2 = character >>= _ -- • Found hole: _ :: Char -> Parser (Char, Char)
+-- character2 = character >>= _ -- • Found hole: _ :: Char -> Parser (Char, Char)
 
+-- Char -> Parser charpair -> parser PairOfChar
+-- Char -> Parser (Char, Char)
+
+character2 = character >>= \c1 -> -- need to make a Parser pair of char here
 
 -- | Write an Applicative functor instance for a @Parser@.
 -- /Tip:/ Use @(=<<)@.

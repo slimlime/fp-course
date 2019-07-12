@@ -262,6 +262,9 @@ valueParser =
     -- use pointfree.io -- to cheat. - gg
     P . flip Result
     
+    -- type of bind for us for parsers?
+    -- (>>=) :: Parser a -> (a -> Parser b) -> Parser b
+
 
     -- Why would I need a parser that does nothing.
     -- I trust you?

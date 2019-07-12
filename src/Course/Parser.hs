@@ -542,13 +542,23 @@ instance Applicative Parser where
 satisfy ::
   (Char -> Bool)
   -> Parser Char
-satisfy =
+satisfy pr =
   -- character >>= \c -> _
   -- character >>= \c -> valueParser c
   -- character >>= \c -> if pr c then _ else _ - succeed with c predicate otherwise i want to fail
-  character >>= \c -> if pr c then _ else _
+  -- character >>= \c -> if pr c then _ else _
+  -- lol always succeeds. valueParser or pure gg
+  -- character >>= \c -> if pr c then pure c else _
+  -- character >>= \c -> if pr c then pure c else _
+  character >>= 
+    \c -> if pr c then pure c else unexpectedCharParser c
 
+    -- only works if
+  -- try
+  -- parse (satisfy (\c -> c == 'x')) "abc"
+  -- parse (satisfy) (\c -> c == 'x')) "xabc"
 
+  
   -- preference if then else.
   -- case of the bool of true false
   -- bool function

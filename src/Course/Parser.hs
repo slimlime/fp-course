@@ -635,6 +635,13 @@ space ::
 space =
   satisfy isSpace
 
+-- not functional composition. it just takes in the char->bool straight in
+-- >> :t satisfy
+-- satisfy :: (Char -> Bool) -> Parser Char
+-- >> :t isSpace
+-- isSpace :: Char -> Bool
+  -- cool
+  -- satisfy takes in a Char -> Bool
   -- lol Char -> Bools
   -- cons false
 -- | Return a parser that continues producing a list of values from the given parser.

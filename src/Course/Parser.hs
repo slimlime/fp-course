@@ -369,7 +369,13 @@ valueParser =
 -- space cost. haskell won't optimise this and shouldn't optimise.
 infixl 3 |||
 
-
+-- P (\input -> 
+--   let r = p input
+--   in bool (id r) (q input) (isErrorResult r) -- workaround let assign expression
+-- )
+-- threading r down the call tree
+-- dependency injectino. depending on r e.g. id r
+-- actually lift3. applicative.
 
 
 -- | Parsers can bind.

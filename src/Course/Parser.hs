@@ -346,7 +346,8 @@ valueParser =
 
   P (\input -> case p input of
       r@(Result _ _) -> r   -- if it did hit the result constructor.
-      _ -> q input)  -- if didn't hit Result constructor.
+      _ -> q input  -- if didn't hit Result constructor.
+  )
   -- -->> :t P
   -- P :: (Input -> ParseResult a) -> Parser a
   -- >>

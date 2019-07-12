@@ -521,6 +521,9 @@ instance Applicative Parser where
     -- This is the relationship between applicative and Monad
     -- can do the same thing in Functor btw
     -- ex Do Functor then Applicative Monad data entry
+    -- same is true. can write this for Functor. macro write generically different ways
+    -- Language extension called Template Haskell
+    -- program against Haskell itself to have Haskell lang as a DataType itself
     -- error "todo: Course.Parser (<*>)#instance Parser"
 
 -- | Return a parser that produces a character but fails if

@@ -491,6 +491,7 @@ character2 =  character >>= \c1 ->
               character >>= \c2 ->
               valueParser (c1, c2)
 
+-- lol pointfree character2 = (character >>=) . (valueParser .) . (,) =<< character
 -- done! Type checks.
 -- type in ghci Prelude console. parse character2 "abc"
 -- need something to take (Char, Char) -> Parser (Char, Char) 

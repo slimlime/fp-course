@@ -185,10 +185,46 @@ instance Functor Parser where
     -- not q constructor. p q . can't. 
 
     -- \f -> \(P p) -> P (\input -> p input)
-    \f -> \(P p) -> P (\input -> _ (p input)) -- found hole ghc says need a functino of ParseResult a -> ParseResult b
+    -- \f -> \(P p) -> P (\input -> _ (p input)) -- found hole ghc says need a functino of ParseResult a -> ParseResult b
+    
+    -- if don't know. reasoning partial answer. suspect using f
+    -- use typeof. "Help me, ghc!"
 
+    \f -> \(P p) -> P (\input -> _ f (p input))  -- help me ghc i suspect use f
 -- | Return a parser that always succeeds with the given value and consumes no input.
 --
+{-FMAP HAS THIS TYPE a->b -> f a -> f b (parseresult thing)
+-- fmap has this type
+
+23 of 26] Compiling Course.Parser    ( src/Course/Parser.hs, interpreted )
+
+src/Course/Parser.hs:193:34: error:
+    • Found hole: _ :: (a -> b) -> ParseResult a -> ParseResult b
+      Where: ‘a’, ‘b’ are rigid type variables bound by
+               the type signature for:
+                 (<$>) :: forall a b. (a -> b) -> Parser a -> Parser b
+               at src/Course/Parser.hs:(166,5)-(168,15)
+    • In the expression: _
+      In the expression: _ f (p input)
+      In the first argument of ‘P’, namely ‘(\ input -> _ f (p input))’
+    • Relevant bindings include
+        input :: Input (bound at src/Course/Parser.hs:193:25)
+        p :: Input -> ParseResult a (bound at src/Course/Parser.hs:193:15)
+        f :: a -> b (bound at src/Course/Parser.hs:193:6)
+        (<$>) :: (a -> b) -> Parser a -> Parser b
+          (bound at src/Course/Parser.hs:169:3)
+      Valid hole fits include
+        (<$>) :: forall (f :: * -> *) a b.
+                 Functor f =>
+                 (a -> b) -> f a -> f b
+          with (<$>) @ParseResult @a @b
+          (imported from ‘Course.Functor’ at src/Course/Parser.hs:11:1-21
+           (and originally defined at src/Course/Functor.hs:(27,3)-(30,10)))
+    |
+193 |     \f -> \(P p) -> P (\input -> _ f (p input))  -- help me ghc i suspect use f
+
+-}
+
 -- >>> parse (valueParser 3) "abc"
 -- Result >abc< 3
 valueParser ::

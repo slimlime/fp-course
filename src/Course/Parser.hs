@@ -141,13 +141,15 @@ character = P (\input ->
   case input of 
     Nil -> UnexpectedEof
     ch:.rest -> Result rest ch)
+
+-- 
 -- Result takes in this order: the rest of the input (rest) and then the thing producing c ch char.
 -- P (\s -> case s of Nil -> UnexpectedEof
 --   (c:.r) -> Result r c)
 
-  -- error "todo: Course.Parser#character" 
-  -- I need to make a parser so what
-  -- do i call?  P
+-- error "todo: Course.Parser#character" 
+-- I need to make a parser so what
+-- do i call?  P
 -- if empty then EOF error. check type of input. either Nil or cons
 -- if nil - unexpectedEOF. if cons then it is char with rest of the input.
 -- expect a parseresult of characters.
@@ -699,7 +701,7 @@ list1 p =
   -- call "And then" 
   -- bind! - some languages call it AND THEN?
   -- error "todo: Course.Parser#list1"
-  -- mutually recursive
+  -- mutually recursive!! crazy only works in lazy lang haskell. py blow up
 
 -- | Return a parser that produces one or more space characters
 -- (consuming until the first non-space) but fails if

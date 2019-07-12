@@ -331,9 +331,18 @@ valueParser =
   Parser a
   -> Parser a
   -> Parser a
-(|||) =
-  error "todo: Course.Parser#(|||)"
+-- (|||) =
+  -- P _
+  -- P _
+  -- P _
+(|||) (P p) (P q) = 
+  P (\input -> p input) -- this will compile but not correct
+  -- error "todo: Course.Parser#(|||)"
 
+  -- -->> :t P
+  -- P :: (Input -> ParseResult a) -> Parser a
+  -- >>
+-- -- choice parser
 infixl 3 |||
 
 -- | Parsers can bind.

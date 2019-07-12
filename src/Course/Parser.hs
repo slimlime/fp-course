@@ -265,6 +265,8 @@ valueParser f =
     -- use ValueParser to copy put it into the changer
     -- patchcable to have the value without consuming extra input that would be parsing next.
     -- getting input to convert back into the chain of parsers.
+    -- also see why the parser is useful when we write the monad
+    
 
     -- e.g. day month pairs 
     -- 3 july

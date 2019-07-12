@@ -257,8 +257,14 @@ valueParser f =
     \a -> P (\input -> Result input a) -- now need an a here. right here earlier
     -- useful sometimes need a parser that does nothing.
 
+
     -- Why would I need a parser that does nothing.
     -- I trust you?
+    -- chain of parsers
+    -- without consuming input when already have?
+    -- use ValueParser to copy put it into the changer
+    -- patchcable to have the value without consuming extra input that would be parsing next.
+    -- getting input to convert back into the chain of parsers.
 
     -- e.g. day month pairs 
     -- 3 july

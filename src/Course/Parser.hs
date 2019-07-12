@@ -178,12 +178,13 @@ instance Functor Parser where
 -- how do i take parseresult a and turn it into parseresult b
 -- use a function
 -- i have a function called \f that will do that
-    \f -> \(P p) -> P (\input -> p) -- pattern match directly here.
+    -- \f -> \(P p) -> P (\input -> p) -- pattern match directly here.
     -- this is now of the type input parseresult a?
 
     -- but this resrve syntax one constructor footnote not quite true. 
     -- not q constructor. p q . can't. 
 
+    \f -> \(P p) -> P (\input -> p input)
 
 -- | Return a parser that always succeeds with the given value and consumes no input.
 --

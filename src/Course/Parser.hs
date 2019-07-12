@@ -262,10 +262,7 @@ valueParser =
     -- use pointfree.io -- to cheat. - gg
     P . flip Result
     
-    -- type of bind for us for parsers?
-    -- (>>=) :: Parser a -> (a -> Parser b) -> Parser b
-
-
+ 
     -- Why would I need a parser that does nothing.
     -- I trust you?
     -- chain of parsers
@@ -275,6 +272,7 @@ valueParser =
     -- getting input to convert back into the chain of parsers.
     -- also see why the parser is useful when we write the monad
 
+    
 
     -- e.g. day month pairs 
     -- 3 july
@@ -282,6 +280,22 @@ valueParser =
   -- parser that does nothing but very useful
   -- it's already implemented down here somewhere pure = that.
   
+   -- type of bind for us for parsers?
+    -- (>>=) :: Parser a -> (a -> Parser b) -> Parser b
+    -- (>>=) character
+    -- character :: Parser Char       -- a just turned into Char
+
+    -- (>>=) :: Parser a -> (a -> Parser b) -> Parser b
+    -- (>>=) character _   -- thing that has to go here. \c return Parser
+    -- (>>=) character (\c1 -> )    -- gg
+    -- (>>=) character (\c1 -> character >>= \c2 -> _)    -- gg
+
+    -- character :: Parser Char       -- a just turned into Char
+
+
+
+
+
   -- error "todo: Course.Parser#valueParser"
 -- haskell evaluation model trap repeated expression parser
 
